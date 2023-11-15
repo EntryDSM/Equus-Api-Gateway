@@ -1,0 +1,14 @@
+spring:
+  main:
+    web-application-type: reactive
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, refresh, busrefresh
+      base-path: /
+      path-mapping:
+        health: /
+server:
+  port: 8888
