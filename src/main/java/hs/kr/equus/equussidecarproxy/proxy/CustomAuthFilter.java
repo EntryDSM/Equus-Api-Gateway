@@ -59,6 +59,7 @@ public class CustomAuthFilter implements GatewayFilter {
         } catch (Exception e) {
             ServerHttpResponse response = exchange.getResponse();
             response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            System.out.println("error: " + e.getMessage());
             return response.setComplete();
         }
 
