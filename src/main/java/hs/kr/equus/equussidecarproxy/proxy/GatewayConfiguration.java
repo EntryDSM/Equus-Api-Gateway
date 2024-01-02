@@ -20,7 +20,7 @@ public class GatewayConfiguration {
                         .and().method("POST")
                         .uri("http://localhost:8080"))
                 .route("client-portal", r -> r.path("/user/verify/popup")
-                        .and().method("GET")
+                        .and().method("POST")
                         .uri("http://localhost:8080"))
                 .route("client-portal", r -> r.path("/user/auth")
                         .and().method("POST", "PUT")
