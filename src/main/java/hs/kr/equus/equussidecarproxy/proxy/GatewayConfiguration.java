@@ -22,7 +22,7 @@ public class GatewayConfiguration {
                 .route("client-portal", r -> r.path("/user/verify/popup")
                         .and().method("POST")
                         .uri("http://localhost:8080"))
-                .route("client-portal", r -> r.path("/user/info")
+                .route("client-portal", r -> r.path("/user/verify/info")
                         .and().method("GET")
                         .uri("http://localhost:8080"))
                 .route("client-portal", r -> r.path("/user/auth")
