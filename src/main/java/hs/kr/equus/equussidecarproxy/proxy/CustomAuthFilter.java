@@ -24,7 +24,7 @@ public class CustomAuthFilter implements GatewayFilter {
 
     public CustomAuthFilter() {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        this.jedisPool = new JedisPool(jedisPoolConfig, "equus-redis.1wgenn.0001.apn2.cache.amazonaws.com", 6379);
+        this.jedisPool = new JedisPool(jedisPoolConfig, "equus-redis.h35um9.0001.apn2.cache.amazonaws.com", 6379);
     }
 
     @Override
