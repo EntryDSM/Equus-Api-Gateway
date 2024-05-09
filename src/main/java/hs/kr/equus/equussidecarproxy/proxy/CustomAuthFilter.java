@@ -53,6 +53,11 @@ public class CustomAuthFilter implements GatewayFilter {
             ServerHttpRequest request = exchange.getRequest().mutate()
                     .header("Request-User-Id", userId)
                     .header("Request-User-Role", userRole)
+                    .header("Access-Control-Allow-Origin", "http://localhost:3001", "http://localhost:3000", "http://localhost:3002")
+                    .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+                    .header("Access-Control-Max-Age", "3600")
+                    .header("Access-Control-Allow-Headers", "x-requested-with, authorization", "Request-User-Id", "Request-User-Role")
+                    .header("Access-Control-Allow-Credentials", "true")
                     .build();
 
             exchange.mutate().request(request).build();
