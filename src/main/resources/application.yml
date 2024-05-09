@@ -1,4 +1,22 @@
 spring:
+  cloud:
+    default-filters:
+      - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+    globalcors:
+      cors-configurations:
+        '[/**]':
+          allowedOrigins:
+            - 'http://localhost:3000'
+            - 'http://localhost:3001'
+            - 'http://localhost:3002'
+          allow-credentials: true
+          allowedHeaders: '*'
+          allowedMethods:
+            - PUT
+            - GET
+            - POST
+            - DELETE
+            - OPTIONS
   main:
     web-application-type: reactive
 
