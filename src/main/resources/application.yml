@@ -2,6 +2,7 @@ spring:
   cloud:
     gateway:
       default-filters:
+        - name: CustomGlobalAuthFilter
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:
         corsConfigurations:
