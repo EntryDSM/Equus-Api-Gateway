@@ -38,6 +38,11 @@ public class CustomAuthFilter extends AbstractGatewayFilterFactory<CustomAuthFil
                 String key = "hs.kr.equus.user.domain.user.domain.UserInfo:" + authorizationHeader;
                 Map<String, String> userInfoMap = jedis.hgetAll(key);
                 log.info("userInfo :: {}", userInfoMap);
+
+                if (headers.containsKey("Request-User-Id") || headers.containsKey("Request-User-Role")) {
+                    return createForbiddenResponse(exchange);
+                }
+
                 if (userInfoMap == null || userInfoMap.isEmpty()) {
                     return createForbiddenResponse(exchange);
                 }
