@@ -44,7 +44,7 @@ spring:
         - id: client-portal-feed
           uri: http://feed-stag-discovery.equus.com:8080
           predicates:
-            - Path=/feed/**
+            - Path=/faq/**,/question/**,/notice/**,/reply/**
             - Method=POST,OPTIONS
 
   main:
