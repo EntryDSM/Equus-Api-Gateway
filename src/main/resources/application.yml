@@ -19,7 +19,9 @@ spring:
               - PATCH
               - GET
               - OPTIONS
-            allowedHeaders: "*"
+            allowedHeaders:
+              - "Authorization"
+              - "authorization"
       routes:
         - id: client-portal-user
           uri: http://user-stag-discovery.equus.com:8080
