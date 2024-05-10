@@ -1,4 +1,69 @@
 spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:3000"
+              - "http://localhost:3001"
+              - "http://localhost:8000"
+            allowCredentials: false
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - PATCH
+              - GET
+              - OPTIONS
+            allowedHeaders: "*"
+      routes:
+        - id: client-portal-root
+          uri: http://localhost:8080
+          predicates:
+            - Path=/
+            - Method=POST,PUT,DELETE,GET
+
+        - id: client-portal-user
+          uri: http://localhost:8080
+          predicates:
+            - Path=/user
+            - Method=POST,OPTIONS
+
+        - id: client-portal-user-verify-popup
+          uri: http://localhost:8080
+          predicates:
+            - Path=/user/verify/popup
+            - Method=POST,OPTIONS
+
+        - id: client-portal-user-verify-info
+          uri: http://localhost:8080
+          predicates:
+            - Path=/user/verify/info
+            - Method=GET,OPTIONS
+
+        - id: client-portal-user-auth
+          uri: http://localhost:8080
+          predicates:
+            - Path=/user/auth
+            - Method=POST,PUT,OPTIONS
+
+        - id: client-portal-admin-auth
+          uri: http://localhost:8080
+          predicates:
+            - Path=/admin/auth
+            - Method=POST,OPTIONS
+
+        - id: client-portal-catch-all
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+            - Method=POST,PUT,DELETE,GET,OPTIONS,PATCH
+          filters:
+            - CustomAuthFilter
   main:
     web-application-type: reactive
 
