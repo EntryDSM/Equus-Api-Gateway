@@ -39,8 +39,8 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
 
             if(authorizationHeader == null){
                 request = exchange.getRequest().mutate()
-                        .header("Request-User-Id", "forbidden")
-                        .header("Request-User-Role", "forbidden")
+                        .header("Request-User-Id", "FORBIDDEN")
+                        .header("Request-User-Role", "USER")
                         .build();
                 exchange.mutate().request(request).build();
                 return chain.filter(exchange);
