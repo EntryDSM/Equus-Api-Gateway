@@ -23,7 +23,7 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
     public CustomGlobalAuthFilter() {
         super(Config.class);
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        this.jedisPool = new JedisPool(jedisPoolConfig, "localhost", 6379);
+        this.jedisPool = new JedisPool(jedisPoolConfig, "equus-redis.h35um9.0001.apn2.cache.amazonaws.com", 6379);
     }
 
     @Override
