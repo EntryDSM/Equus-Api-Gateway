@@ -1,6 +1,6 @@
 FROM openjdk:17
 ENV TZ=Asia/Seoul
-COPY build/libs/Equus-Sidecar-Proxy-0.0.1-SNAPSHOT.jar app.jar
+COPY build/libs/Equus-Api-Gateway-0.0.1-SNAPSHOT.jar app.jar
 
 COPY /datadog/dd-java-agent.jar /usr/agent/dd-java-agent.jar
 
