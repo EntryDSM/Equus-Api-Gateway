@@ -21,49 +21,32 @@ spring:
               - OPTIONS
             allowedHeaders: "*"
       routes:
-        - id: client-portal-root
-          uri: http://localhost:8080
-          predicates:
-            - Path=/
-            - Method=POST,PUT,DELETE,GET
-
         - id: client-portal-user
-          uri: http://localhost:8080
+          uri: http://user-stag-discovery.equus.com:8080
           predicates:
-            - Path=/user
+            - Path=/user/**,/admin/**
+            - Method=POST,OPTIONS
+        - id: client-portal-banner
+          uri: http://banner-stag-discovery.equus.com:8080
+          predicates:
+            - Path=/banner/**
+            - Method=POST,OPTIONS
+        - id: client-portal-application
+          uri: http://application-stag-discovery.equus.com:8080
+          predicates:
+            - Path=/application/**,/graduation/**,/score/**
+            - Method=POST,OPTIONS
+        - id: client-portal-schedule
+          uri: http://schedule-stag-discovery.equus.com:8080
+          predicates:
+            - Path=/schedule/**
+            - Method=POST,OPTIONS
+        - id: client-portal-feed
+          uri: http://feed-stag-discovery.equus.com:8080
+          predicates:
+            - Path=/feed/**
             - Method=POST,OPTIONS
 
-        - id: client-portal-user-verify-popup
-          uri: http://localhost:8080
-          predicates:
-            - Path=/user/verify/popup
-            - Method=POST,OPTIONS
-
-        - id: client-portal-user-verify-info
-          uri: http://localhost:8080
-          predicates:
-            - Path=/user/verify/info
-            - Method=GET,OPTIONS
-
-        - id: client-portal-user-auth
-          uri: http://localhost:8080
-          predicates:
-            - Path=/user/auth
-            - Method=POST,PUT,OPTIONS
-
-        - id: client-portal-admin-auth
-          uri: http://localhost:8080
-          predicates:
-            - Path=/admin/auth
-            - Method=POST,OPTIONS
-
-        - id: client-portal-catch-all
-          uri: http://localhost:8080
-          predicates:
-            - Path=/**
-            - Method=POST,PUT,DELETE,GET,OPTIONS,PATCH
-          filters:
-            - CustomAuthFilter
   main:
     web-application-type: reactive
 

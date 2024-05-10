@@ -5,4 +5,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = 'Equus-Sidecar-Proxy'
+rootProject.name = 'Equus-Api-Gateway'

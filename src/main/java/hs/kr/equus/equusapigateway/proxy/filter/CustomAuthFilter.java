@@ -1,6 +1,5 @@
-package hs.kr.equus.equussidecarproxy.proxy.filter;
+package hs.kr.equus.equusapigateway.proxy.filter;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -32,11 +31,6 @@ public class CustomAuthFilter extends AbstractGatewayFilterFactory<CustomAuthFil
         return ((exchange, chain) -> {
             HttpHeaders headers = exchange.getRequest().getHeaders();
             String authorizationHeader = headers.getFirst(HttpHeaders.AUTHORIZATION);
-
-            if (authorizationHeader == null || authorizationHeader.isEmpty()) {
-                log.info("Missing Authorization header");
-                return createForbiddenResponse(exchange);
-            }
 
             log.info("Authorization Header: {}", authorizationHeader);
 
