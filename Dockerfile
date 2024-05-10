@@ -2,4 +2,4 @@ FROM openjdk:17
 ENV TZ=Asia/Seoul
 COPY build/libs/Equus-Sidecar-Proxy-0.0.1-SNAPSHOT.jar app.jar
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-javaagent:/usr/agent/dd-java-agent.jar", "-Ddd.agent.host=localhost", "-Ddd.profiling.enabled=true","-XX:FlightRecorderOptions=stackdepth=256", "-Ddd.logs.injection=true", "-Ddd.service=sidecar-proxy", "-Ddd.env=prod", "-Dspring.profiles.active=production", "-jar", "/app.jar"]
