@@ -20,35 +20,33 @@ spring:
               - PATCH
               - GET
               - OPTIONS
-            allowedHeaders:
-              - "Authorization"
-              - "authorization"
+            allowedHeaders: "*"
       routes:
         - id: client-portal-user
           uri: http://user-stag-discovery.equus.com:8080
           predicates:
             - Path=/user/**,/admin/**
-            - Method=POST,OPTIONS
+            - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-banner
           uri: http://banner-stag-discovery.equus.com:8080
           predicates:
             - Path=/banner/**
-            - Method=POST,OPTIONS
+            - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-application
           uri: http://application-stag-discovery.equus.com:8080
           predicates:
             - Path=/application/**,/graduation/**,/score/**
-            - Method=POST,OPTIONS
+            - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-schedule
           uri: http://schedule-stag-discovery.equus.com:8080
           predicates:
             - Path=/schedule/**
-            - Method=POST,OPTIONS
+            - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-feed
           uri: http://feed-stag-discovery.equus.com:8080
           predicates:
             - Path=/faq/**,/question/**,/notice/**,/reply/**
-            - Method=POST,OPTIONS
+            - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
 
   main:
     web-application-type: reactive
