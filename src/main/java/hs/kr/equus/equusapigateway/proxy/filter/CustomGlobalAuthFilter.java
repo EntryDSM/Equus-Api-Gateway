@@ -47,7 +47,8 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
             }
             else {
                 try (Jedis jedis = jedisPool.getResource()) {
-                    String key = "hs.kr.equus.user.domain.user.domain.UserInfo:" + authorizationHeader;
+                    String token = authorizationHeader.replaceFirst("^Bearer ", "");
+                    String key = "hs.kr.equus.user.domain.user.domain.UserInfo:" + token;
                     Map<String, String> userInfoMap = jedis.hgetAll(key);
                     log.info("userInfo :: {}", userInfoMap);
 
