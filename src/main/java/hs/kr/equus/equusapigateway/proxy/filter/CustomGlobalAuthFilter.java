@@ -53,8 +53,8 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
 
                     if (userInfoMap == null || userInfoMap.isEmpty()) {
                         request = exchange.getRequest().mutate()
-                                .header("Request-User-Id", "forbidden")
-                                .header("Request-User-Role", "forbidden")
+                                .header("Request-User-Id", "FORBIDDEN")
+                                .header("Request-User-Role", "USER")
                                 .build();
                     } else {
                         String userId = userInfoMap.get("userId");
