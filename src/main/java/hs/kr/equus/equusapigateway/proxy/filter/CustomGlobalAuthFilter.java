@@ -59,6 +59,9 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
                             String userId = userInfoMap.getOrDefault("userId", "FORBIDDEN");
                             String userRole = userInfoMap.getOrDefault("userRole", "USER");
 
+                            log.debug("Extracted userId: {}", userId);
+                            log.debug("Extracted userRole: {}", userRole);
+
                             ServerHttpRequest modifiedRequest = request.mutate()
                                     .header("Request-User-Id", userId)
                                     .header("Request-User-Role", userRole)
