@@ -39,7 +39,7 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
             log.debug("Authorization Header: {}", authorizationHeader);
 
             if (authorizationHeader == null) {
-                return mutateRequestWithForbiddenHeaders(exchange, chain);
+                return chain.filter(exchange.mutate().build());
             }
 
             String token = authorizationHeader.replaceFirst("^Bearer ", "");
@@ -50,10 +50,10 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
             log.debug("userInfo :: {}", userInfoMap);
 
             if (userInfoMap.isEmpty()) {
-                return mutateRequestWithForbiddenHeaders(exchange, chain);
+                return chain.filter(exchange.mutate().build());
             } else {
-                String userId = (String) userInfoMap.getOrDefault("userId", null);
-                String userRole = (String) userInfoMap.getOrDefault("userRole", null);
+                String userId = (String) userInfoMap.get("userId");
+                String userRole = (String) userInfoMap.get("userRole");
 
                 log.debug("Extracted userId: {}", userId);
                 log.debug("Extracted userRole: {}", userRole);
@@ -66,14 +66,6 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
                 return chain.filter(exchange.mutate().request(modifiedRequest).build());
             }
         };
-    }
-
-    private Mono<Void> mutateRequestWithForbiddenHeaders(ServerWebExchange exchange, GatewayFilterChain chain) {
-        ServerHttpRequest request = exchange.getRequest().mutate()
-                .header("Request-User-Id", null)
-                .header("Request-User-Role", null)
-                .build();
-        return chain.filter(exchange.mutate().request(request).build());
     }
 
     private Mono<Void> buildErrorResponse(ServerWebExchange exchange, HttpStatus status) {
