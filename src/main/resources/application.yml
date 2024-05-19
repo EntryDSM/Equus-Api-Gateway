@@ -1,4 +1,7 @@
 spring:
+  redis:
+    host: equus-redis.h35um9.0001.apn2.cache.amazonaws.com
+    port: 6379
   cloud:
     gateway:
       default-filters:
