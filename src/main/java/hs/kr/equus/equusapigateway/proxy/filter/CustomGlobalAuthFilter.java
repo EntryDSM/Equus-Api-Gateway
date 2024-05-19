@@ -52,8 +52,8 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
             if (userInfoMap.isEmpty()) {
                 return mutateRequestWithForbiddenHeaders(exchange, chain);
             } else {
-                String userId = (String) userInfoMap.getOrDefault("userId", "FORBIDDEN");
-                String userRole = (String) userInfoMap.getOrDefault("userRole", "USER");
+                String userId = (String) userInfoMap.getOrDefault("userId", null);
+                String userRole = (String) userInfoMap.getOrDefault("userRole", null);
 
                 log.debug("Extracted userId: {}", userId);
                 log.debug("Extracted userRole: {}", userRole);
@@ -70,8 +70,8 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
 
     private Mono<Void> mutateRequestWithForbiddenHeaders(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest().mutate()
-                .header("Request-User-Id", "FORBIDDEN")
-                .header("Request-User-Role", "USER")
+                .header("Request-User-Id", null)
+                .header("Request-User-Role", null)
                 .build();
         return chain.filter(exchange.mutate().request(request).build());
     }
