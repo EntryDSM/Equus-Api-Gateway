@@ -36,9 +36,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
-    implementation 'redis.clients:jedis:3.7.0'
-
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
+    implementation 'io.lettuce.core:lettuce-core'
 }
 
 tasks.named('bootBuildImage') {
