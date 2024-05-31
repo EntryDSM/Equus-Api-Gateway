@@ -18,6 +18,8 @@ spring:
               - "http://localhost:3004"
               - "http://localhost:3005"
               - "http://localhost:8000"
+              - "https://entry-auth-stag.xquare.app"
+              - "https://entry-lts-stag.xquare.app"
             allowCredentials: false
             allowedMethods:
               - GET
@@ -42,7 +44,7 @@ spring:
         - id: client-portal-application
           uri: http://application-stag-discovery.equus.com:8080
           predicates:
-            - Path=/application/**,/graduation/**,/score/**,/admin/application/**,/schools
+            - Path=/application/**,/graduation/**,/score/**,/admin/application/**,/schools/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-schedule
           uri: http://schedule-stag-discovery.equus.com:8080
