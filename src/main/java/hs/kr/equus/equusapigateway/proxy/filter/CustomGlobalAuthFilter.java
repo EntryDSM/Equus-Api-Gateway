@@ -55,6 +55,10 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
             if (userInfoMap.isEmpty()) {
                 return chain.filter(exchange.mutate().build());
             } else {
+                if (userId.isEmpty() || userId.isBlank() || userRole.isBlank() || userRole.isEmpty()) {
+                    return chain.filter(exchange.mutate().build());
+                }
+                
                 String userId = (String) userInfoMap.get("userId");
                 String userRole = (String) userInfoMap.get("userRole");
 
