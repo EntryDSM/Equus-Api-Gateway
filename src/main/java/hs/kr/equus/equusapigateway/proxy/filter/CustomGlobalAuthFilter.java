@@ -1,8 +1,6 @@
 package hs.kr.equus.equusapigateway.proxy.filter;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,8 +17,7 @@ import java.util.Map;
 @Component
 @Slf4j
 public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomGlobalAuthFilter.Config> {
-    Logger logger = LoggerFactory.getLogger(CustomGlobalAuthFilter.class);
-    
+
     private final RedisTemplate<String, String> redisTemplate;
 
     public CustomGlobalAuthFilter(RedisTemplate<String, String> redisTemplate) {
@@ -39,7 +36,7 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
             }
 
             String authorizationHeader = headers.getFirst(HttpHeaders.AUTHORIZATION);
-            logger.debug("Authorization Header: {}", authorizationHeader);
+            System.out.println("Authorization Header: " + authorizationHeader);
 
             if (authorizationHeader == null) {
                 return chain.filter(exchange.mutate().build());
@@ -50,7 +47,7 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
 
             Map<Object, Object> userInfoMap = redisTemplate.opsForHash().entries(key);
 
-            logger.debug("userInfo :: {}", userInfoMap);
+            System.out.println("userInfo :: " + userInfoMap);
 
             if (userInfoMap.isEmpty()) {
                 return chain.filter(exchange.mutate().build());
@@ -62,8 +59,8 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
                     return chain.filter(exchange.mutate().build());
                 }
 
-                logger.debug("Extracted userId: {}", userId);
-                logger.debug("Extracted userRole: {}", userRole);
+                System.out.println("Extracted userId: " + userId);
+                System.out.println("Extracted userRole: " + userRole);
 
                 ServerHttpRequest modifiedRequest = request.mutate()
                         .header("Request-User-Id", userId)
