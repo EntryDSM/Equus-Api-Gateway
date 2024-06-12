@@ -25,7 +25,7 @@ spring:
         - id: client-portal-user
           uri: http://user-stag-discovery.equus.com:8080
           predicates:
-            - Path=/user/**,/admin/**
+            - Path=/user/**,/admin/auth
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-banner
           uri: http://banner-stag-discovery.equus.com:8080
