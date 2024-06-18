@@ -1,6 +1,6 @@
 spring:
   redis:
-    host: equus-redis.h35um9.0001.apn2.cache.amazonaws.com
+    host: redis.xquare.app
     port: 6379
   cloud:
     gateway:
