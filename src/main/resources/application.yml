@@ -40,7 +40,7 @@ spring:
         - id: client-portal-feed
           uri: http://equus-feed-be-stag.entry-stag.svc.cluster.local:8080
           predicates:
-            - Path=/faq/**,/question/**,/notice/**,/reply/**
+            - Path=/faq/**,/question/**,/notice/**,/reply/**,/attach-file/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
 
   main:
