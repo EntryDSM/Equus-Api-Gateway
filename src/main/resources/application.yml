@@ -42,6 +42,11 @@ spring:
           predicates:
             - Path=/faq/**,/question/**,/notice/**,/reply/**,/attach-file/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
+        - id: client-portal-status
+          uri: http://equus-status-be-stag.entry-stag.svc.cluster.local:8080
+          predicates:
+            - Path=/admin/status/**
+            - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
 
   main:
     web-application-type: reactive
