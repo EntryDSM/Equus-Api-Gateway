@@ -23,27 +23,27 @@ spring:
             allowedHeaders: "*"
       routes:
         - id: client-portal-user
-          uri: http://equus-user-be-stag.entry-stag.svc.cluster.local:8080
+          uri: ${USER_URL}
           predicates:
             - Path=/user/**,/admin/auth
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-application
-          uri: http://equus-application-be-stag.entry-stag.svc.cluster.local:8080
+          uri: ${APPLICATION_URL}
           predicates:
             - Path=/application/**,/graduation/**,/score/**,/admin/application/**,/schools/**,/files/**,/pdf/**,/pass/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-schedule
-          uri: http://equus-schedule-be-stag.entry-stag.svc.cluster.local:8080
+          uri: ${SCHEDULE_URL}
           predicates:
             - Path=/schedule/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-feed
-          uri: http://equus-feed-be-stag.entry-stag.svc.cluster.local:8080
+          uri: ${FEED_URL}
           predicates:
             - Path=/faq/**,/question/**,/notice/**,/reply/**,/attach-file/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-status
-          uri: http://equus-status-be-stag.entry-stag.svc.cluster.local:8080
+          uri: ${STATUS_URL}
           predicates:
             - Path=/admin/status/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
