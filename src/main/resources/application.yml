@@ -1,6 +1,6 @@
 spring:
   redis:
-    host: redis.xquare.app
+    host: entry-redis
     port: 6379
   cloud:
     gateway:
@@ -23,27 +23,24 @@ spring:
             allowedHeaders: "*"
       routes:
         - id: client-portal-user
-          uri: ${USER_URL}
+          uri: ${CASPER_USER_URL:https://casper-user.entrydsm.hs.kr}
           predicates:
             - Path=/user/**,/admin/auth
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-application
-          uri: ${APPLICATION_URL}
-          predicates:
-            - Path=/application/**,/graduation/**,/score/**,/admin/application/**,/schools/**,/files/**,/pdf/**,/pass/**
-            - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
+          uri: ${CASPER_APPLICATION_URL:https://casper-application.entrydsm.hs.kr}
         - id: client-portal-schedule
-          uri: ${SCHEDULE_URL}
+          uri: ${CASPER_SCHEDULE_URL:https://casper-schedule.entrydsm.hs.kr}
           predicates:
             - Path=/schedule/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-feed
-          uri: ${FEED_URL}
+          uri: ${CASPER_FEED_URL:https://casper-feed.entrydsm.hs.kr}
           predicates:
             - Path=/faq/**,/question/**,/notice/**,/reply/**,/attach-file/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-status
-          uri: ${STATUS_URL}
+          uri: ${CASPER_STATUS_URL:https://casper-status.entrydsm.hs.kr}
           predicates:
             - Path=/admin/status/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
