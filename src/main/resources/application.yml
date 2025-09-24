@@ -40,7 +40,7 @@ spring:
         - id: client-portal-feed
           uri: ${CASPER_FEED_URL:https://casper-feed.entrydsm.hs.kr}
           predicates:
-            - Path=/faq/**,/question/**,/notice/**,/reply/**,/attach-file/**
+            - Path=/faq/**,/notice/**,/attach-file/**,/screen/**,/reserve/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-status
           uri: ${CASPER_STATUS_URL:https://casper-status.entrydsm.hs.kr}
