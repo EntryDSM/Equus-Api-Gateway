@@ -43,7 +43,7 @@ public class CustomGlobalAuthFilter extends AbstractGatewayFilterFactory<CustomG
             }
 
             String token = authorizationHeader.replaceFirst("^Bearer ", "");
-            String key = "hs.kr.equus.user.domain.user.domain.UserInfo:" + token;
+            String key = "hs.kr.entrydsm.user.domain.user.adapter.out.domain.UserInfo:" + token;
 
             Map<Object, Object> userInfoMap = redisTemplate.opsForHash().entries(key);
 
