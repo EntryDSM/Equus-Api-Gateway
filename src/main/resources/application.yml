@@ -30,7 +30,7 @@ spring:
         - id: client-portal-application
           uri: ${CASPER_APPLICATION_URL:https://casper-application.entrydsm.hs.kr}
           predicates:
-            - Path=/application/**,/graduation/**,/score/**,/admin/application/**,/schools/**,/files/**,/pdf/**,/pass/**,/api/**
+            - Path=/application/**,/graduation/**,/score/**,/admin/application/**,/schools/**,/files/**,/pdf/**,/pass/**,/api/**,/photo/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-schedule
           uri: ${CASPER_SCHEDULE_URL:https://casper-schedule.entrydsm.hs.kr}
