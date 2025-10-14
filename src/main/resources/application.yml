@@ -22,6 +22,11 @@ spring:
               - OPTIONS
             allowedHeaders: "*"
       routes:
+        - id: client-portal-status
+          uri: ${CASPER_STATUS_URL:https://casper-status.entrydsm.hs.kr}
+          predicates:
+            - Path=/admin/status/**,/internal/status/**
+            - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
         - id: client-portal-user
           uri: ${CASPER_USER_URL:https://casper-user.entrydsm.hs.kr}
           predicates:
@@ -41,11 +46,6 @@ spring:
           uri: ${CASPER_FEED_URL:https://casper-feed.entrydsm.hs.kr}
           predicates:
             - Path=/faq/**,/notice/**,/attach-file/**,/screen/**,/reserve/**
-            - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
-        - id: client-portal-status
-          uri: ${CASPER_STATUS_URL:https://casper-status.entrydsm.hs.kr}
-          predicates:
-            - Path=/admin/status/**,/internal/status/**
             - Method=POST,OPTIONS,GET,DELETE,PUT,PATCH
 
   main:
